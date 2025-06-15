@@ -4,19 +4,32 @@ import { PaginationMeta } from '../../types/car';
 import CircleButton from '../CircleButton/CircleButton';
 import Dots from '../Dots/Dots';
 
-interface PaginationProps {
-  meta: PaginationMeta;
-}
-
-function getPages(current: number, last: number) {
-  const pages = [];
-  if (last <= 7) {
-    for (let i = 1; i <= last; i++) pages.push(i);
+function getPages(current: number, last: number): (number | string)[] {
+  if (current > last - 5) {
+    const start = Math.max(1, last - 4);
+    const pages: (number | string)[] = [];
+    for (let i = start; i <= last; i++) {
+      pages.push(i);
+    }
     return pages;
   }
-  if (current <= 3) return [1, 2, 3, 4, '...', last];
-  if (current >= last - 2) return [1, '...', last - 3, last - 2, last - 1, last];
-  return [1, '...', current - 1, current, current + 1, '...', last];
+
+  const pages: (number | string)[] = [current];
+  for (let i = 1; i <= 2; i++) {
+    const page = current + i;
+    if (page < last) {
+      pages.push(page);
+    }
+  }
+
+  pages.push('...');
+  pages.push(last);
+
+  return pages;
+}
+
+type PaginationProps = {
+  meta: PaginationMeta;
 }
 
 export default function Pagination({ meta }: PaginationProps) {
@@ -29,16 +42,15 @@ export default function Pagination({ meta }: PaginationProps) {
   const searchParams = useSearchParams();
   const currentPage = page;
   const lastPage = last_page;
+  const pages = getPages(currentPage, lastPage);
+  const isFirstPage = currentPage === 1;
+  const isLastPage = currentPage === lastPage;
 
   const handlePageChange = (page: number) => {
     const params = new URLSearchParams(searchParams.toString());
     params.set('_page', page.toString());
     router.push(`?${params.toString()}`);
   };
-
-  const pages = getPages(currentPage, lastPage);
-  const isFirstPage = currentPage === 1;
-  const isLastPage = currentPage === lastPage;
 
   return (
     <div className="flex justify-center gap-2 mt-8">

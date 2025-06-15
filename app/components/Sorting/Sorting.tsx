@@ -1,6 +1,6 @@
 'use client'
 import { useRouter, useSearchParams } from 'next/navigation';
-import { SortOrder } from '../types/car';
+import { SortOrder } from '../../types/car';
 
 export default function Sorting() {
   const router = useRouter();
@@ -31,7 +31,7 @@ export default function Sorting() {
         className={`px-4 py-2 rounded ${currentSort === null
           ? 'bg-blue-600 text-white'
           : 'bg-gray-200 hover:bg-gray-300 text-black'
-        }`}
+          }`}
       >
         Без сортировки
       </button>
@@ -40,7 +40,7 @@ export default function Sorting() {
         className={`px-4 py-2 rounded ${currentSort === 'asc'
           ? 'bg-blue-600 text-white'
           : 'bg-gray-200 hover:bg-gray-300 text-black'
-        }`}
+          }`}
       >
         По возрастанию цены
       </button>
@@ -49,7 +49,7 @@ export default function Sorting() {
         className={`px-4 py-2 rounded ${currentSort === 'desc'
           ? 'bg-blue-600 text-white'
           : 'bg-gray-200 hover:bg-gray-300 text-black'
-        }`}
+          }`}
       >
         По убыванию цены
       </button>

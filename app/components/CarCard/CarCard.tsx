@@ -1,9 +1,9 @@
 import Image from 'next/image';
-import { Car } from '../types/car';
+import { Car } from '../../types/car';
 
 const carPlaceholder = 'https://via.placeholder.com/400x300?text=No+Image';
 
-interface CarCardProps {
+type CarCardProps = {
   car: Car;
 }
 
@@ -54,7 +54,7 @@ export default function CarCard({ car }: CarCardProps) {
         </div>
         <div className="flex flex-wrap gap-x-3 gap-y-1 text-xs items-center">
           <span>⛽ {engine_type}</span>
-          <span>⬛ {color}</span>
+          <span>🌓 {color}</span>
           <span>📅 {year}</span>
         </div>
       </div>
