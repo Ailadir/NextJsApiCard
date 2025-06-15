@@ -8,30 +8,35 @@ async function getCars(searchParams: URLSearchParams): Promise<ApiResponse> {
   const baseUrl = 'https://testing-api.ru-rating.ru';
   const url = new URL('/cars', baseUrl);
   url.search = searchParams.toString();
-  
+
   const res = await fetch(url.toString(), {
     next: { revalidate: 60 }
   });
-  
+
   if (!res.ok) {
     throw new Error('Failed to fetch cars');
   }
-  
+
   return res.json();
 }
 
-// type SearchParams = { [key: string]: string | string[] | undefined }
-// export default async function Home({searchParams = {},
-// }: {
-//   searchParams: SearchParams
-// }) {
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-export default async function Home(props: any) {
-  const { searchParams = {} } = props;
+type HomeProps = {
+  params: Promise<Record<string, unknown>>;
+  searchParams: Promise<{
+    _sort?: string;
+    _order?: string;
+    [key: string]: string | undefined;
+  }>;
+};
+
+export default async function Home(props: HomeProps) {
+  console.log('Home props:', props);
+  const searchParams = await props.searchParams;
   const params = new URLSearchParams();
 
   params.set('_limit', '12');
   params.set('_page', '1');
+
 
   if (searchParams._sort) {
     params.set('_sort', searchParams._sort as string);

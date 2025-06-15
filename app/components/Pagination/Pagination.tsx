@@ -33,7 +33,6 @@ export default function Pagination({ meta }: PaginationProps) {
 
   return (
     <div className="flex justify-center gap-2 mt-8">
-      {/* Prev */}
       <button
         disabled={currentPage === 1}
         onClick={() => handlePageChange(currentPage - 1)}
@@ -42,7 +41,6 @@ export default function Pagination({ meta }: PaginationProps) {
       >
         &lt;
       </button>
-      {/* Pages */}
       {pages.map((page, idx) =>
         typeof page === 'number' ? (
           <button
@@ -64,7 +62,6 @@ export default function Pagination({ meta }: PaginationProps) {
           </span>
         )
       )}
-      {/* Next */}
       <button
         disabled={currentPage === lastPage}
         onClick={() => handlePageChange(currentPage + 1)}
