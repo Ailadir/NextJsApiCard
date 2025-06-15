@@ -11,16 +11,12 @@ export interface Car {
   gearbox: string;
   engine_type: string;
   color: string;
-  year: number; 
+  year: number;
 }
 
 export interface PaginationMeta {
-    page: number;
-    last_page: number;
-  currentPage: number;
-  totalPages: number;
-  totalItems: number;
-  itemsPerPage: number;
+  page: number;
+  last_page: number;
 }
 
 export interface ApiResponse {

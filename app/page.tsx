@@ -30,7 +30,6 @@ type HomeProps = {
 };
 
 export default async function Home(props: HomeProps) {
-  console.log('Home props:', props);
   const searchParams = await props.searchParams;
   const params = new URLSearchParams();
 

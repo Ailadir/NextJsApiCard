@@ -20,8 +20,8 @@ export default function CarCard({ car }: CarCardProps) {
     color,
     year
   } = car
-  const imageUrl = images?.image?.[0] || carPlaceholder;
 
+  const imageUrl = images?.image?.[0] || carPlaceholder;
   const monthlyPrice = Math.round((price / 70) / 12).toLocaleString('ru-RU');
 
   return (
