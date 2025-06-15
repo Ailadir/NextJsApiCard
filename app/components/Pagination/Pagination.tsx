@@ -1,6 +1,8 @@
 'use client'
 import { useRouter, useSearchParams } from 'next/navigation';
-import { PaginationMeta } from '../types/car';
+import { PaginationMeta } from '../../types/car';
+import CircleButton from '../CircleButton/CircleButton';
+import Dots from '../Dots/Dots';
 
 interface PaginationProps {
   meta: PaginationMeta;
@@ -18,10 +20,15 @@ function getPages(current: number, last: number) {
 }
 
 export default function Pagination({ meta }: PaginationProps) {
+  const {
+    page,
+    last_page,
+  } = meta
+
   const router = useRouter();
   const searchParams = useSearchParams();
-  const currentPage = meta.page;
-  const lastPage = meta.last_page;
+  const currentPage = page;
+  const lastPage = last_page;
 
   const handlePageChange = (page: number) => {
     const params = new URLSearchParams(searchParams.toString());
@@ -30,46 +37,37 @@ export default function Pagination({ meta }: PaginationProps) {
   };
 
   const pages = getPages(currentPage, lastPage);
+  const isFirstPage = currentPage === 1;
+  const isLastPage = currentPage === lastPage;
 
   return (
     <div className="flex justify-center gap-2 mt-8">
-      <button
-        disabled={currentPage === 1}
+      <CircleButton
+        disabled={isFirstPage}
+        active={!isFirstPage}
         onClick={() => handlePageChange(currentPage - 1)}
-        className={`w-9 h-9 rounded-full flex items-center justify-center
-          ${currentPage === 1 ? 'bg-gray-300 text-gray-400' : 'bg-blue-500 text-white hover:bg-blue-600'}`}
       >
         &lt;
-      </button>
+      </CircleButton>
       {pages.map((page, idx) =>
         typeof page === 'number' ? (
-          <button
-            key={page}
+          <CircleButton
+            key={idx}
+            active={page === currentPage}
             onClick={() => handlePageChange(page)}
-            className={`w-9 h-9 rounded-full border flex items-center justify-center
-              ${page === currentPage
-                ? 'bg-blue-500 text-white border-blue-500'
-                : 'bg-white text-blue-500 border-blue-500 hover:bg-blue-100'}`}
           >
             {page}
-          </button>
+          </CircleButton>
         ) : (
-          <span
-            key={`dots-${idx}`}
-            className="w-9 h-9 rounded-full flex items-center justify-center bg-gray-200 text-gray-500"
-          >
-            ...
-          </span>
+          <Dots key={idx} />
         )
       )}
-      <button
-        disabled={currentPage === lastPage}
-        onClick={() => handlePageChange(currentPage + 1)}
-        className={`w-9 h-9 rounded-full flex items-center justify-center
-          ${currentPage === lastPage ? 'bg-gray-300 text-gray-400' : 'bg-blue-500 text-white hover:bg-blue-600'}`}
-      >
+      <CircleButton
+        disabled={isLastPage}
+        active={!isLastPage}
+        onClick={() => handlePageChange(currentPage + 1)} >
         &gt;
-      </button>
+      </CircleButton>
     </div>
   );
 } 

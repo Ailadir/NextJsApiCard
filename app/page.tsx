@@ -1,7 +1,7 @@
 import { Suspense } from 'react';
 import CarCard from './components/CarCard';
 import Sorting from './components/Sorting';
-import Pagination from './components/Pagination';
+import Pagination from './components/Pagination/Pagination';
 import { ApiResponse } from './types/car';
 
 async function getCars(searchParams: URLSearchParams): Promise<ApiResponse> {
