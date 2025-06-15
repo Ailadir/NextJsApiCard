@@ -12,10 +12,11 @@ export interface Car {
   engine_type: string;
   color: string;
   year: number; 
-  // Add other car properties as needed
 }
 
 export interface PaginationMeta {
+    page: number;
+    last_page: number;
   currentPage: number;
   totalPages: number;
   totalItems: number;
