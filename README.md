@@ -2,6 +2,8 @@
 
 A car catalog web application built with Next.js 15, TypeScript, and Tailwind CSS. The app fetches car data from a public API, displays car cards with images and details, and supports sorting and pagination synchronized with the URL.
 
+**Demo:** [Deployed on Vercel](https://next-js-api-card.vercel.app/)
+
 ## Features
 
 - SSR/SSG with Next.js App Router
@@ -85,6 +87,5 @@ MIT (add your license if needed)
 
 ---
 
-**Demo:** [Deployed on Vercel](https://next-js-api-card.vercel.app/)
 
 **Repository:** [GitHub](https://github.com/Ailadir/NextJsApiCard)
