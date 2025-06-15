@@ -27,7 +27,7 @@ export default function Sorting() {
   };
 
   return (
-    <div className="flex gap-4 mb-6">
+    <div className="flex gap-4 mb-6 overflow-x-auto no-scrollbar">
       <SortingButton active={currentSort === null} onClick={() => handleSort(null)}>
         Без сортировки
       </SortingButton>
