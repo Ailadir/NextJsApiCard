@@ -1,36 +1,90 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Next.js Car Catalog
+
+A car catalog web application built with Next.js 15, TypeScript, and Tailwind CSS. The app fetches car data from a public API, displays car cards with images and details, and supports sorting and pagination synchronized with the URL.
+
+## Features
+
+- SSR/SSG with Next.js App Router
+- Car cards with image, name, price, modification, mileage, gearbox, engine type, color, year, and monthly price
+- Sorting by price (ascending/descending/none)
+- Pagination with ellipsis and active page highlighting (like Avito/Auto.ru)
+- All state (page, sorting) is synchronized with URL query parameters
+- Responsive and mobile-friendly design
+- Optimized images with Next.js Image component
+- API proxying for client-side requests
+
+## Technologies
+
+- Next.js 15 (App Router)
+- TypeScript
+- Tailwind CSS
 
 ## Getting Started
 
-First, run the development server:
+### 1. Clone the repository
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+git clone https://github.com/your-username/your-repo.git
+cd your-repo
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### 2. Install dependencies
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```bash
+yarn install
+# or
+npm install
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+### 3. Run the development server
 
-## Learn More
+```bash
+yarn dev
+# or
+npm run dev
+```
 
-To learn more about Next.js, take a look at the following resources:
+Visit [http://localhost:3000](http://localhost:3000) to view the app.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### 4. Build and start for production
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+```bash
+yarn build && yarn start
+# or
+npm run build && npm start
+```
 
-## Deploy on Vercel
+## API
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+- Uses [https://testing-api.ru-rating.ru/cars](https://testing-api.ru-rating.ru/cars) with pagination and sorting via query params.
+- Example: `?_limit=12&_page=1&_sort=price&_order=asc`
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## Deployment
+
+- Easily deployable to [Vercel](https://vercel.com/) or any Node.js hosting.
+
+## Folder Structure
+
+```
+app/
+  components/      # UI components (CarCard, Sorting, Pagination)
+  types/           # TypeScript types
+  api/             # API proxy route
+  page.tsx         # Main page
+public/            # Static assets (if needed)
+next.config.ts     # Next.js config (image domains, rewrites)
+```
+
+## Customization
+
+- You can adjust the card design, add more car details, or improve the mobile layout as needed.
+
+## License
+
+MIT (add your license if needed)
+
+---
+
+<!-- **Demo:** [Deployed on Vercel](https://your-vercel-deployment-url) -->
+
+**Repository:** [GitHub](https://github.com/Ailadir/NextJsApiCard)
