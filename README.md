@@ -81,11 +81,6 @@ next.config.ts     # Next.js config (image domains, rewrites)
 
 - You can adjust the card design, add more car details, or improve the mobile layout as needed.
 
-## License
-
-MIT (add your license if needed)
-
----
 
 
 **Repository:** [GitHub](https://github.com/Ailadir/NextJsApiCard)
